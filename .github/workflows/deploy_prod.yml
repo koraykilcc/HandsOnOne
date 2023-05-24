@@ -5,10 +5,11 @@
 # This workflow will build a Java project with Gradle and cache/restore any dependencies to improve the workflow execution time
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-gradle
 
-name: Java CI with Gradle
+name: Java CI with Gradle to AWS - Production
 
-on: [push,pull_request]
-
+on:
+  push:
+    branches: master
 
 permissions:
   contents: read
@@ -27,7 +28,16 @@ jobs:
         distribution: 'temurin'
     - name: change permission
       run: git update-index --chmod=+x gradlew
+    - name: Configure AWS and SAM
+      uses: aws-actions/setup-sam@v1
+    - uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-west-1
     - name: Build with Gradle
       uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
       with:
         arguments: build
+    - name: Deploy with SAM
+      run:  sam deploy --no-confirm-changeset --no-fail-on-empty-changeset --config-file samconfig-prod.toml
