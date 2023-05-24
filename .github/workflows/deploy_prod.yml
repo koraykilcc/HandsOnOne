@@ -27,7 +27,7 @@ jobs:
         java-version: '11'
         distribution: 'temurin'
     - name: change permission
-      run: git update-index --chmod=+x gradlew
+      run: chmod +x gradlew
     - name: Configure AWS and SAM
       uses: aws-actions/setup-sam@v1
     - uses: aws-actions/configure-aws-credentials@v1
