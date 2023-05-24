@@ -7,7 +7,7 @@ Description: >
 Globals:
   Function:
     Tracing: Active
-    CodeUri: build/libs/HandsOnOne2-0.1-all.jar
+    CodeUri: build/libs/HandsOnOne-0.1-all.jar
     Runtime: java17
     Timeout: 30
     MemorySize: 1024
