@@ -28,6 +28,10 @@ jobs:
         distribution: 'temurin'
     - name: change permission
       run: chmod +x gradlew
+    - name: sast-scan  
+      uses: AppThreat/sast-scan-action@1.0.2
+      with:
+        type: "java"
     - name: Configure AWS and SAM
       uses: aws-actions/setup-sam@v1
     - uses: aws-actions/configure-aws-credentials@v1
