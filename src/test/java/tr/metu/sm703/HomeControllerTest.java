@@ -39,7 +39,7 @@ public class HomeControllerTest {
         AwsProxyResponse response = handler.handleRequest(request, lambdaContext);
         assertEquals(200, response.getStatusCode());
 
-        assertEquals("{\"message\":\"Hello World hotfix!\"}",  response.getBody());
+        assertEquals("{\"message\":\"Hello World bugfix!\"}",  response.getBody());
 
     }
 }
