@@ -5,11 +5,11 @@
 # This workflow will build a Java project with Gradle and cache/restore any dependencies to improve the workflow execution time
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-gradle
 
-name: Java CI with Gradle to AWS - Hotfix/Bugfix/Feature
+name: Java CI with Gradle to AWS - Hotfix
 
 on:
   push:
-    branches: [ "hotfix" , "bugfix", "feature"]
+    branches: "hotfix" 
 
 permissions:
   contents: read
@@ -40,4 +40,4 @@ jobs:
         with:
           arguments: build
       - name: Deploy with SAM
-        run:  sam deploy -t template-dev.yaml --no-confirm-changeset --no-fail-on-empty-changeset --config-file samconfig-dev.toml
+        run:  sam deploy -t template-hotfix.yaml --no-confirm-changeset --no-fail-on-empty-changeset --config-file samconfig-hotfix.toml
