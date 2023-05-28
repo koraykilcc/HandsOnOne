@@ -41,5 +41,5 @@ Resources:
 
 Outputs:
   MicronautApiEndpoint:
-    Description: "API Gateway endpoint URL for Dev stage for Micronaut sample function"
+    Description: "API Gateway endpoint URL for Hotfix stage for Micronaut sample function"
     Value: !Sub "https://${MyApi}.execute-api.${AWS::Region}.amazonaws.com/hotfix/"
