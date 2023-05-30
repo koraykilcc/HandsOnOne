@@ -6,17 +6,18 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.Collections;
 import java.util.Map;
-
+import java.util.Random;
 
 
 @Controller
 public class HomeController {
-
+    String generateSecretToken() {
+        Random r = new Random();
+        return Long.toHexString(r.nextLong());
+    }
     @Get
     public Map<String, Object> index() {
-        String sql = "SELECT * FROM users WHERE username='" + username + "' AND password='" + password + "'";
-        Statement stmt = conn.createStatement();
-        ResultSet rs = stmt.executeQuery(sql);
+        generateSecretToken();
         return Collections.singletonMap("message", "Hello World feature!");//as
 
     }
