@@ -9,7 +9,8 @@ public class HomeController {
 
     @Get
     public Map<String, Object> index() {
-
+        String username="koray";
+        System.out.println("<h1>Welcome "+username+"</h1>")
         return Collections.singletonMap("message", "Hello World feature!");
 
     }
