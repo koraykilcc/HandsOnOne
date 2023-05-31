@@ -32,18 +32,6 @@ jobs:
       uses: AppThreat/sast-scan-action@1.0.2
       with:
         type: "java"
-    - name: Initialize CodeQL
-      uses: github/codeql-action/init@v2
-      with:
-        languages: go, javascript
-
-      # Here is where you build your code
-    - run: |
-        make bootstrap
-        make release
-
-    - name: Perform CodeQL Analysis
-      uses: github/codeql-action/analyze@v2
     - name: Configure AWS and SAM
       uses: aws-actions/setup-sam@v1
     - uses: aws-actions/configure-aws-credentials@v1
