@@ -32,8 +32,6 @@ jobs:
       uses: AppThreat/sast-scan-action@1.0.2
       with:
         type: "java"
-    - name: DefenseCode ThunderScan Action
-      uses: defensecode/thunderscan-action@v1.0
     - name: Configure AWS and SAM
       uses: aws-actions/setup-sam@v1
     - uses: aws-actions/configure-aws-credentials@v1
