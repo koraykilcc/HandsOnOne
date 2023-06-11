@@ -24,9 +24,6 @@ Resources:
       ActionsEnabled: true
       AlarmDescription: !Sub 'API Gateway API realworld-serverless-application-backend-${Stage} availability is lower than 90%'
       ComparisonOperator: GreaterThanOrEqualToThreshold
-      Dimensions:
-        - Name: ApiName
-          Value: !Sub realworld-serverless-application-backend-${Stage}
       EvaluationPeriods: 5
       MetricName: Count
       Namespace: AWS/ApiGateway
