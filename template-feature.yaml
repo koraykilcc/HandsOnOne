@@ -11,16 +11,6 @@ Globals:
     Runtime: java17
     Timeout: 30
     MemorySize: 1024
-    Alarms:
-      # All Lambda functions will get a Throttle CloudWatch alarm. If necessary, each function can override certain properties alarm as they need
-      Throttles:
-        Metric: "throttle"
-        # Notify if the Lambda gets throttled in 5min interval
-        Threshold: 1
-        Timeframe: "5min"
-        Notification:
-          Type: Email
-          Address: kilickoray1@gmail.com
 
 Resources:
   MyApi:
@@ -28,6 +18,24 @@ Resources:
     Properties:
       StageName: feature
       Name: SM703 Hands-on-feature
+  ApiCount:
+    Type: 'AWS::CloudWatch::Alarm'
+    Properties:
+      ActionsEnabled: true
+      AlarmDescription: !Sub 'API Gateway API realworld-serverless-application-backend-${Stage} availability is lower than 90%'
+      ComparisonOperator: GreaterThanOrEqualToThreshold
+      Dimensions:
+        - Name: ApiName
+          Value: !Sub realworld-serverless-application-backend-${Stage}
+      EvaluationPeriods: 5
+      MetricName: Count
+      Namespace: AWS/ApiGateway
+      Period: 60
+      Statistic: Sum
+      Threshold: 1
+      TreatMissingData: notBreaching
+      AlarmActions:
+        - Ref: AlarmsTopic
 
 
   HelloWorldFunctionFeature:
