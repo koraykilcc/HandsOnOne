@@ -22,8 +22,11 @@ Resources:
     Type: 'AWS::CloudWatch::Alarm'
     Properties:
       ActionsEnabled: true
-      AlarmDescription: !Sub 'API Gateway API realworld-serverless-application-backend-${Stage} availability is lower than 90%'
+      AlarmDescription: 'My-Blah-api-v1 ApiGateway 4XXError'
       ComparisonOperator: GreaterThanOrEqualToThreshold
+      Dimensions:
+        - Name: ApiName
+          Value: !Sub "${AWS::StackName}-api-v1"
       EvaluationPeriods: 5
       MetricName: Count
       Namespace: AWS/ApiGateway
@@ -32,7 +35,7 @@ Resources:
       Threshold: 1
       TreatMissingData: notBreaching
       AlarmActions:
-        - Ref: AlarmsTopic
+        - !Sub 'arn:aws:sns:${AWS::Region}:${AWS::AccountId}:MyCompany_Cloudwatch_Alarms_Topic'
 
 
   HelloWorldFunctionFeature:
