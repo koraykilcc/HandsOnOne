@@ -11,6 +11,16 @@ Globals:
     Runtime: java17
     Timeout: 30
     MemorySize: 1024
+    Alarms:
+      # All Lambda functions will get a Throttle CloudWatch alarm. If necessary, each function can override certain properties alarm as they need
+      Throttles:
+        Metric: "throttle"
+        # Notify if the Lambda gets throttled in 5min interval
+        Threshold: 1
+        Timeframe: "5min"
+        Notification:
+          Type: Email
+          Address: kilickoray1@gmail.com
 
 Resources:
   MyApi:
