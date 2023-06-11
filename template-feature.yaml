@@ -27,7 +27,7 @@ Resources:
       Dimensions:
         - Name: ApiName
           Value: !Sub "${AWS::StackName}-api-v1"
-      EvaluationPeriods: 5
+      EvaluationPeriods: 1
       MetricName: Count
       Namespace: AWS/ApiGateway
       Period: 60
