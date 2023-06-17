@@ -10,7 +10,7 @@ public class HomeController {
     @Get
     public Map<String, Object> index() {
 
-        return Collections.singletonMap("message", "Hello World feature1!");
+        return Collections.singletonMap("message", "Hello World feature2!");
 
     }
 }
